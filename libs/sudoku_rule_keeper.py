@@ -15,7 +15,7 @@ class SudokuRuleKeeper:
           errors.append([x, y])
         if self._is_include_vertical(grids, grids[x][y], y):
           errors.append([x, y])
-        if self.is_include_subgrid(grids, grids[x][y], x, y):
+        if self._is_include_subgrid(grids, grids[x][y], x, y):
           errors.append([x, y])
   #  print(errors)
 
@@ -52,13 +52,13 @@ class SudokuRuleKeeper:
 
     return ','.join(set(quadrants))
 
-  def _make_grids(strArr):
+  def _make_grids(self, strArr):
     grids = []
     for i in strArr:
       grids.append(i.replace('(','').replace(')','').split(','))
     return grids
 
-  def _is_include_horizontal(grids, check_value, current_x):
+  def _is_include_horizontal(self, grids, check_value, current_x):
     count = 0
     for y in range(9):
       if check_value == grids[current_x][y]:
@@ -68,7 +68,7 @@ class SudokuRuleKeeper:
     else:
       return False
 
-  def _is_include_vertical(grids, check_value, current_y):
+  def _is_include_vertical(self, grids, check_value, current_y):
     count = 0
     for x in range(9):
       if check_value == grids[x][current_y]:
