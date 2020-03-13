@@ -77,3 +77,32 @@ class SudokuRuleKeeper:
       return True
     else:
       return False
+
+  def _is_include_subgrid(self, grids, check_value, current_x, current_y):
+    group1 = [0, 1, 2]
+    group2 = [3, 4, 5]
+    group3 = [6, 7, 8]
+
+    if current_x in group1:
+      check_group_x = group1
+    if current_x in group2:
+      check_group_x = group2
+    if current_x in group3:
+      check_group_x = group3
+
+    if current_y in group1:
+      check_group_y = group1
+    if current_y in group2:
+      check_group_y = group2
+    if current_y in group3:
+      check_group_y = group3
+
+    count = 0
+    for x in check_group_x:
+      for y in check_group_y:
+        if check_value == grids[x][y]:
+          count += 1
+    if count >= 2:
+      return True
+    else:
+      return False
